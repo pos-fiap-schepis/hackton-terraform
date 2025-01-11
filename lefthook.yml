@@ -1,0 +1,11 @@
+commit-msg:
+  scripts:
+    conventional-commit:
+      run: |
+        message=$(cat "$1")
+        if ! echo "$message" | grep -qE "^(feat|fix|docs|style|refactor|test|chore|perf|ci|build|revert|BREAKING CHANGE): .+"; then
+          echo "ERRO: A mensagem do commit não segue o padrão Conventional Commits!"
+          echo "Exemplo: feat: adicionar nova funcionalidade de login"
+          echo "Veja: https://www.conventionalcommits.org/pt-br/v1.0.0"
+          exit 1
+        fi

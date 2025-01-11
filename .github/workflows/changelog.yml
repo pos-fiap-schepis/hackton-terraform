@@ -1,0 +1,54 @@
+name: Generate Changelog
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  generate-changelog:
+    name: Generate Changelogs
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install Conventional Changelog CLI
+        run: npm install -g conventional-changelog-cli
+
+      - name: Validate Commit Messages
+        run: |
+          git log --format=%s -n 10 | grep -qE "^(feat|fix|docs|style|refactor|test|chore|perf|ci|build|revert|BREAKING CHANGE): .+" || { echo "Commit message does not follow Conventional Commits!"; exit 1; }
+
+      - name: Generate Main Changelog
+        run: |
+          mkdir -p .changelog
+          conventional-changelog -p angular -i .changelog/CHANGELOG.md -s -r 0
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add .changelog/CHANGELOG.md
+          git commit -m "docs: update CHANGELOG.md [skip ci]" || echo "No changes to commit"
+
+      - name: Generate Docs Changelog
+        run: |
+          mkdir -p .changelog
+          conventional-changelog -p angular -i .changelog/DOCS-CHANGELOG.md -s -r 0 --config ./.conventional-changelog-docs-config.js
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add .changelog/DOCS-CHANGELOG.md
+          git commit -m "docs: update DOCS-CHANGELOG.md [skip ci]" || echo "No changes to commit"
+
+      - name: Push changes
+        run: |
+          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
+          git push
