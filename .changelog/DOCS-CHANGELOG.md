@@ -1,9 +1,9 @@
-#  (2025-01-11)
+#  (2025-01-12)
 
 
 ### docs
 
-* update CHANGELOG.md [skip ci] ([](https://github.com/pos-fiap-schepis/projeto-template/commit/8e78fa74bbb6841fbb80b02cd21ba5dbbb71afd1))
+* update CHANGELOG.md [skip ci] ([](https://github.com/pos-fiap-schepis/hackton-terraform/commit/4805e722497944168c2f485006977cd4b9b19ba1))
 
 
 
