@@ -1,9 +1,9 @@
-#  (2025-01-11)
+#  (2025-01-12)
 
 
 ### Features
 
-* iniciar estrutura base do projeto ([0eb861b](https://github.com/pos-fiap-schepis/projeto-template/commit/0eb861bfcf93aae591f3ac172b15997510207349))
+* create a initial resources in cloud AWS ([4607dec](https://github.com/pos-fiap-schepis/hackton-terraform/commit/4607decfbf90c832a53fbc769409ee12040bc53f))
 
 
 
