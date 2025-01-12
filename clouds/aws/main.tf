@@ -50,7 +50,7 @@ module "rds" {
   create_security_group = true
   vpc_id                = module.vpc.vpc_id
   allocated_storage     = 20
-  engine_version        = "13.4"
+  engine_version        = "16.4"
   instance_class        = "db.t3.micro"
   allow_cidr_blocks     = ["10.0.3.0/24", "10.0.4.0/24"]
   tags                  = { Environment = "app", Project = "multi-cluster" }
