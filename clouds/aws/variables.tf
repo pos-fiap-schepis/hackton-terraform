@@ -24,8 +24,8 @@ variable "private_subnet_cidrs" {
 
 variable "avaliables_zones" {
   description = "List of avaliables zones"
-  type = list(string)
-  default = ["us-east-1a", "us-east-1b", "us-east-1c"]
+  type        = list(string)
+  default     = ["us-east-1a", "us-east-1b", "us-east-1c"]
 }
 
 variable "aws_access_key" {

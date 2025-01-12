@@ -42,7 +42,7 @@ variable "min_capacity" {
 
 variable "instance_types" {
   description = "Instance type of node group"
-  type = list(string)
+  type        = list(string)
 }
 
 variable "tags" {

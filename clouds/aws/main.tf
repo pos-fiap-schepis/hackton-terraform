@@ -10,7 +10,7 @@ module "vpc" {
   cidr                 = "10.0.0.0/16"
   public_subnet_cidrs  = ["10.0.101.0/24", "10.0.102.0/24", "10.0.103.0/24"]
   private_subnet_cidrs = ["10.0.1.0/24", "10.0.2.0/24", "10.0.3.0/24"]
-  availability_zone   =  ["us-east-1a", "us-east-1b", "us-east-1c"]
+  availability_zone    = ["us-east-1a", "us-east-1b", "us-east-1c"]
   tags                 = { Project = "multi-cluster" }
 }
 
@@ -24,7 +24,7 @@ module "app_cluster" {
   desired_capacity = 2
   max_capacity     = 3
   min_capacity     = 1
-  instance_types = ["t3.large"]
+  instance_types   = ["t3.large"]
   tags             = { Environment = "app", Project = "multi-cluster" }
 }
 
@@ -35,7 +35,7 @@ module "infra_cluster" {
   cluster_role_arn = data.aws_iam_role.lab_role.arn
   node_role_arn    = data.aws_iam_role.lab_role.arn
   private_subnets  = module.vpc.private_subnets
-  instance_types = ["t3.large"]
+  instance_types   = ["t3.large"]
   desired_capacity = 2
   max_capacity     = 3
   min_capacity     = 1
@@ -47,8 +47,9 @@ module "rds" {
   source                = "./modules/rds"
   name                  = "app-database"
   db_name               = "appdb"
-  username              = "admin"
-  password              = "secure-password"
+  username              = "postgres"
+  password              = "postgres"
+  immediately           = true
   subnet_ids            = module.vpc.private_subnets
   security_group_ids    = []
   create_security_group = true

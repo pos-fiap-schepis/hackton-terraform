@@ -58,6 +58,11 @@ variable "vpc_id" {
   type        = string
 }
 
+variable "immediately" {
+  description = "Apply change immediately"
+  type        = bool
+}
+
 variable "allow_cidr_blocks" {
   description = "List of CIDR blocks to allow for RDS ingress"
   type        = list(string)

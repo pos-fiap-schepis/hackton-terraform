@@ -43,6 +43,9 @@ resource "aws_db_instance" "this" {
   username               = var.username
   password               = var.password
   db_subnet_group_name   = aws_db_subnet_group.this.name
+  parameter_group_name   = "default.postgres16"
+  skip_final_snapshot    = true
+  publicly_accessible    = true
   vpc_security_group_ids = var.create_security_group ? [aws_security_group.this[0].id] : var.security_group_ids
 
   tags = var.tags
