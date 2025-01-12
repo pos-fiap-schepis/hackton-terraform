@@ -24,6 +24,7 @@ module "app_cluster" {
   desired_capacity = 2
   max_capacity     = 3
   min_capacity     = 1
+  instance_types = ["t3.large"]
   tags             = { Environment = "app", Project = "multi-cluster" }
 }
 
@@ -34,6 +35,7 @@ module "infra_cluster" {
   cluster_role_arn = data.aws_iam_role.lab_role.arn
   node_role_arn    = data.aws_iam_role.lab_role.arn
   private_subnets  = module.vpc.private_subnets
+  instance_types = ["t3.large"]
   desired_capacity = 2
   max_capacity     = 3
   min_capacity     = 1

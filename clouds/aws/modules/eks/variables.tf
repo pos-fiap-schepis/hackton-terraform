@@ -12,6 +12,7 @@ variable "cluster_version" {
 variable "cluster_role_arn" {
   description = "IAM role ARN for the EKS cluster"
   type        = string
+  default     = "data.aws_iam_role.lab_role.arn"
 }
 
 variable "node_role_arn" {
@@ -37,6 +38,11 @@ variable "max_capacity" {
 variable "min_capacity" {
   description = "Minimum capacity of the EKS node group"
   type        = number
+}
+
+variable "instance_types" {
+  description = "Instance type of node group"
+  type = list(string)
 }
 
 variable "tags" {
