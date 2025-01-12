@@ -1,3 +1,4 @@
+# ROLE to create resources
 data "aws_iam_role" "lab_role" {
   name = "LabRole"
 }
@@ -39,6 +40,7 @@ module "infra_cluster" {
   tags             = { Environment = "infra", Project = "multi-cluster" }
 }
 
+# RDS to application and keycloack
 module "rds" {
   source                = "./modules/rds"
   name                  = "app-database"
@@ -56,6 +58,7 @@ module "rds" {
   tags                  = { Environment = "app", Project = "multi-cluster" }
 }
 
+# ECR to push docker images
 module "app_ecr" {
   source = "./modules/ecr"
   tags   = { Environment = "app", Project = "multi-cluster" }
