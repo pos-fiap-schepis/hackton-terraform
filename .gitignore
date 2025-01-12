@@ -69,6 +69,8 @@ override.tf.json
 # Ignore CLI configuration files
 .terraformrc
 terraform.rc
+.terraform.lock.hcl
+*.tfplan
 
 # Created by https://www.toptal.com/developers/gitignore/api/jetbrains+all,visualstudiocode
 # Edit at https://www.toptal.com/developers/gitignore?templates=jetbrains+all,visualstudiocode
