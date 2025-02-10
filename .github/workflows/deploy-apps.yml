@@ -81,7 +81,7 @@ jobs:
             --set community.enabled=true \
             --set postgresql.enabled=false \
             --set jdbcOverwrite.enabled=true \
-            --set jdbcOverwrite.jdbcUrl="jdbc:postgresql://hackaton-database.crspw5htod2v.us-east-1.rds.amazonaws.com:5432/sonarqube" \
+            --set jdbcOverwrite.jdbcUrl="jdbc:postgresql://$RDS_ENDPOINT:5432/sonarqube" \
             --set jdbcOverwrite.jdbcUsername=postgres \
             --set jdbcOverwrite.jdbcPassword=postgres \
             --set monitoringPasscode="weillergatao" \
