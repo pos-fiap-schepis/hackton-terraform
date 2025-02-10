@@ -1,4 +1,4 @@
-#  (2025-02-09)
+#  (2025-02-10)
 
 
 ### Bug Fixes
@@ -12,6 +12,7 @@
 ### Features
 
 * create a initial resources in cloud AWS ([4607dec](https://github.com/pos-fiap-schepis/hackton-terraform/commit/4607decfbf90c832a53fbc769409ee12040bc53f))
+* create workflow deploy and deploy apps ([e16fd41](https://github.com/pos-fiap-schepis/hackton-terraform/commit/e16fd41bb962561d3336b0960e85b0bfcfe34bf4))
 
 
 
