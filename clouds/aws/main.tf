@@ -1,3 +1,7 @@
+terraform {
+  backend "s3" {}
+}
+
 # ROLE to create resources
 data "aws_iam_role" "lab_role" {
   name = "LabRole"
@@ -61,9 +65,4 @@ module "rds" {
 module "app_ecr" {
   source = "./modules/ecr"
   tags   = { Environment = "app", Project = "multi-cluster" }
-}
-
-module "s3_backend" {
-  source              = "./modules/s3"
-  bucket_name         = "pos-fiap-schepis"
 }

@@ -36,10 +36,26 @@ jobs:
         with:
           terraform_version: 1.9.6
 
+      - name: Create Bucket S3
+        run: |
+          BUCKET_NAME="pos-fiap-schepis"
+          if aws s3api head-bucket --bucket "$BUCKET_NAME" 2>/dev/null; then
+            echo "✅ S3 bucket '$BUCKET_NAME' already exists."
+          else
+            echo "🚀 Creating S3 bucket '$BUCKET_NAME'..."
+            aws s3api create-bucket --bucket "$BUCKET_NAME" --region us-east-1 --create-bucket-configuration LocationConstraint=us-east-1
+            aws s3api put-bucket-versioning --bucket "$BUCKET_NAME" --versioning-configuration Status=Enabled
+            echo "✅ S3 bucket '$BUCKET_NAME' has been created and versioning enabled."
+          fi
+
       - name: Terraform Init
         run: |
           cd clouds/aws
-          terraform init -backend-config="bucket=pos-fiap-schepis" -backend-config="key=terraform.tfstate" -backend-config="region=us-east-1"
+          terraform init \
+            -backend-config="bucket=pos-fiap-schepis" \
+            -backend-config="key=terraform.tfstate" \
+            -backend-config="region=us-east-1" \
+            -backend-config="encrypt=true"
 
       - name: Terraform Plan
         run: |
