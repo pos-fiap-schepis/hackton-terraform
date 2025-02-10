@@ -19,6 +19,9 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v3
 
+      - name: Change to AWS Cloud Directory
+        run: cd ../cloud/aws
+
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
