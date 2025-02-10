@@ -5,6 +5,7 @@
 
 * include comments in modules ([](https://github.com/pos-fiap-schepis/hackton-terraform/commit/d38ee191484a2a4278925c99ce3e82ad7380e31f))
 * include files terraform to ignore ([](https://github.com/pos-fiap-schepis/hackton-terraform/commit/33e0edb1021fdda95a36c945e70e67e307b4313d))
+* update CHANGELOG.md [skip ci] ([](https://github.com/pos-fiap-schepis/hackton-terraform/commit/64009ab7fbbd6a07d083774e57f09ce4802ac183))
 * update CHANGELOG.md [skip ci] ([](https://github.com/pos-fiap-schepis/hackton-terraform/commit/1a98857b9f2305d96c0690481d8587be99338ca0))
 * update CHANGELOG.md [skip ci] ([](https://github.com/pos-fiap-schepis/hackton-terraform/commit/6f2551d3d5e4e6ebb282e5beee083b7b88fa1349))
 * update CHANGELOG.md [skip ci] ([](https://github.com/pos-fiap-schepis/hackton-terraform/commit/8d3db4ad289dfd4d17c7759866ca41a0e8fe067e))
@@ -28,6 +29,7 @@
 * update CHANGELOG.md [skip ci] ([](https://github.com/pos-fiap-schepis/hackton-terraform/commit/2723ba644f28fc0d30d8b0589aa48e50eb2bb78c))
 * update CHANGELOG.md [skip ci] ([](https://github.com/pos-fiap-schepis/hackton-terraform/commit/353be2d722723dede2ae411c9cebe09c001d18e7))
 * update CHANGELOG.md [skip ci] ([](https://github.com/pos-fiap-schepis/hackton-terraform/commit/4805e722497944168c2f485006977cd4b9b19ba1))
+* update DOCS-CHANGELOG.md [skip ci] ([](https://github.com/pos-fiap-schepis/hackton-terraform/commit/b7703c09b94b3ff89e9f067a258b19755b4dcead))
 * update DOCS-CHANGELOG.md [skip ci] ([](https://github.com/pos-fiap-schepis/hackton-terraform/commit/82d35088b20fd58dc0df0e0061ec8d33d5fbe744))
 * update DOCS-CHANGELOG.md [skip ci] ([](https://github.com/pos-fiap-schepis/hackton-terraform/commit/d71f7ab087f99575ec89c69422ffb672ae77c6ff))
 * update DOCS-CHANGELOG.md [skip ci] ([](https://github.com/pos-fiap-schepis/hackton-terraform/commit/420f45d825b189b55d223e37fbb6e219b516a015))
