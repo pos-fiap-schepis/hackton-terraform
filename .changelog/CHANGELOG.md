@@ -22,6 +22,7 @@
 * path and name file ([0f0161f](https://github.com/pos-fiap-schepis/hackton-terraform/commit/0f0161f22f465aaad536b069ff2d01c067cf6be8))
 * path to aws ([35f48e8](https://github.com/pos-fiap-schepis/hackton-terraform/commit/35f48e860a40e17fc7a39ca531cbb1eaf57c2ea5))
 * rds instance attributes, see why node groups not attach ([795fec5](https://github.com/pos-fiap-schepis/hackton-terraform/commit/795fec5be8add23ba0592a54748baf1fd75ba2ea))
+* terraform backend s3 ([bdac55c](https://github.com/pos-fiap-schepis/hackton-terraform/commit/bdac55c1798f77a201c535a39cd5b773331570f9))
 * version rds ([2ee33e0](https://github.com/pos-fiap-schepis/hackton-terraform/commit/2ee33e0ecb86ed95203706d447d25525f23526c6))
 * workflo deploy apps [skip ci] ([77429f6](https://github.com/pos-fiap-schepis/hackton-terraform/commit/77429f68b29715cfa25b6fb7b3b7a504be407409))
 * workflo deploy apps [skip ci] ([fcc08b9](https://github.com/pos-fiap-schepis/hackton-terraform/commit/fcc08b9bb79c39c984ae055351c09c5723594ae0))
