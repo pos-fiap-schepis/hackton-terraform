@@ -38,16 +38,16 @@ jobs:
 
       - name: Create Bucket S3
         run: |
-          BUCKET_NAME="pos-fiap-schepis-$(date +'%Y%m%d-%H%M%S')"
-          echo "Generated bucket name: $BUCKET_NAME"
-          if aws s3api head-bucket --bucket "$BUCKET_NAME" 2>/dev/null; then
-            echo "✅ S3 bucket '$BUCKET_NAME' already exists."
-          else
-            echo "🚀 Creating S3 bucket '$BUCKET_NAME'..."
-            aws s3api create-bucket --bucket "$BUCKET_NAME" --region us-east-1
-            aws s3api put-bucket-versioning --bucket "$BUCKET_NAME" --versioning-configuration Status=Enabled
-            echo "✅ S3 bucket '$BUCKET_NAME' has been created and versioning enabled."
-          fi
+            BUCKET_NAME="pos-fiap-schepis-$(date +'%Y%m%d-%H%M%S')"
+            EXISTING_BUCKET=$(aws s3api list-buckets --query "Buckets[?contains(Name, 'pos-fiap-schepis')].Name" --output text)
+            if [[ -n "$EXISTING_BUCKET" ]]; then
+              echo "✅ S3 bucket containing 'pos-fiap-schepis' already exists: $EXISTING_BUCKET"
+            else
+              echo "🚀 Creating new S3 bucket: $BUCKET_NAME..."
+              aws s3api create-bucket --bucket "$BUCKET_NAME" --region us-east-1
+              aws s3api put-bucket-versioning --bucket "$BUCKET_NAME" --versioning-configuration Status=Enabled
+              echo "✅ S3 bucket '$BUCKET_NAME' has been created and versioning enabled."
+            fi
 
       - name: Terraform Init
         run: |
@@ -67,19 +67,3 @@ jobs:
         run: |
           cd clouds/aws 
           terraform apply -auto-approve plan.tfplan
-
-      - name: Prepare RDS to all databases and restore BD
-        id: rds_endpoint
-        env:
-          RDS_PASSWORD: ${{ secrets.RDS_PASSWORD }}
-        run: |
-          RDS_ENDPOINT=$(aws rds describe-db-instances --db-instance-identifier hackaton-database --query "DBInstances[0].Endpoint.Address" --output text)
-          export RDS_ENDPOINT
-      
-          echo "Creating databases..."
-          PGPASSWORD=$RDS_PASSWORD psql -h $RDS_ENDPOINT -U postgres -c "CREATE DATABASE hackaton;"
-          PGPASSWORD=$RDS_PASSWORD psql -h $RDS_ENDPOINT -U postgres -c "CREATE DATABASE sonarqube;"
-          PGPASSWORD=$RDS_PASSWORD psql -h $RDS_ENDPOINT -U postgres -c "CREATE DATABASE keycloak;"
-      
-          echo "Restoring Keycloak database..."
-          PGPASSWORD=$RDS_PASSWORD psql -h $RDS_ENDPOINT -U postgres -d keycloak -f init-db/keycloak_dump.sql

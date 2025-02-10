@@ -1,0 +1,40 @@
+name: Configuration about RDS
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:  # Allows manual triggering
+
+jobs:
+  create-rds-databases:
+    name: Prepare RDS and Restore Database
+    runs-on: ubuntu-latest
+    environment: production
+    if: github.event_name == 'workflow_dispatch'  # Runs only when manually triggered
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Configure AWS CLI
+        run: |
+          aws configure set aws_access_key_id ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws configure set aws_secret_access_key ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws configure set region us-east-1
+
+      - name: Prepare RDS Databases and Restore Keycloak
+        id: rds_endpoint
+        env:
+          RDS_PASSWORD: ${{ secrets.RDS_PASSWORD }}
+        run: |
+          RDS_ENDPOINT=$(aws rds describe-db-instances --db-instance-identifier hackaton-database --query "DBInstances[0].Endpoint.Address" --output text)
+          export RDS_ENDPOINT
+          
+          echo "Creating databases..."
+          PGPASSWORD=$RDS_PASSWORD psql -h $RDS_ENDPOINT -U postgres -c "CREATE DATABASE hackaton;"
+          PGPASSWORD=$RDS_PASSWORD psql -h $RDS_ENDPOINT -U postgres -c "CREATE DATABASE sonarqube;"
+          PGPASSWORD=$RDS_PASSWORD psql -h $RDS_ENDPOINT -U postgres -c "CREATE DATABASE keycloak;"
+          
+          echo "Restoring Keycloak database..."
+          PGPASSWORD=$RDS_PASSWORD psql -h $RDS_ENDPOINT -U postgres -d keycloak -f init-db/keycloak_dump.sql
