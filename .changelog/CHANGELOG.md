@@ -5,6 +5,7 @@
 
 * attach node group ([95436b8](https://github.com/pos-fiap-schepis/hackton-terraform/commit/95436b88370a4fd72ce63b9955d83e943a3e05a8))
 * attributes of node groups ([1b32c9e](https://github.com/pos-fiap-schepis/hackton-terraform/commit/1b32c9e0a88c6da4a42b4be403dd19f7103f0936))
+* aws cloud ([8ebd66a](https://github.com/pos-fiap-schepis/hackton-terraform/commit/8ebd66abeb512f82d28a84c0574ca4aba380a73a))
 * aws database name ([c07abbd](https://github.com/pos-fiap-schepis/hackton-terraform/commit/c07abbdc4a736494322d9622f7ab4561f9fc62cc))
 * bucket name ([b76accd](https://github.com/pos-fiap-schepis/hackton-terraform/commit/b76accdc0188f2ba359aee9ee4ec32e8de48fd45))
 * bucket name ([4cfbed3](https://github.com/pos-fiap-schepis/hackton-terraform/commit/4cfbed366829a1a21d43275a5a26481f9df039a7))
