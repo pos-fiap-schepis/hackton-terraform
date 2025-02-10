@@ -53,7 +53,7 @@ jobs:
         run: |
           cd clouds/aws
           terraform init \
-            -backend-config="bucket=pos-fiap-schepis" \
+            -backend-config="bucket=$BUCKET_NAME" \
             -backend-config="key=terraform.tfstate" \
             -backend-config="region=us-east-1" \
             -backend-config="encrypt=true"
