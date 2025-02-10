@@ -53,9 +53,9 @@ jobs:
 
       - name: Deploy MinIO
         run: |
-          helm repo add minio https://charts.min.io/
+          helm repo add bitnami https://charts.bitnami.com/bitnami
           helm repo update
-          helm install minio minio/minio \
+          helm install minio bitnami/minio \
           --set persistence.enabled=false \
           --set service.type=LoadBalancer \
           --set auth.rootUser=minioadmin \
