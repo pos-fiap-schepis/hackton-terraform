@@ -5,6 +5,7 @@
 
 * attach node group ([95436b8](https://github.com/pos-fiap-schepis/hackton-terraform/commit/95436b88370a4fd72ce63b9955d83e943a3e05a8))
 * attributes of node groups ([1b32c9e](https://github.com/pos-fiap-schepis/hackton-terraform/commit/1b32c9e0a88c6da4a42b4be403dd19f7103f0936))
+* path and name file ([f0be2e8](https://github.com/pos-fiap-schepis/hackton-terraform/commit/f0be2e84bb77e9c1be995cbf4946238201db8288))
 * path and name file ([da5e22f](https://github.com/pos-fiap-schepis/hackton-terraform/commit/da5e22f05c8679b18fc1276fdf5d0a310c2166ec))
 * path and name file ([fba98f2](https://github.com/pos-fiap-schepis/hackton-terraform/commit/fba98f233f8e931de686430e41ba4481212f762b))
 * path and name file ([0f0161f](https://github.com/pos-fiap-schepis/hackton-terraform/commit/0f0161f22f465aaad536b069ff2d01c067cf6be8))
