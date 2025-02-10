@@ -22,7 +22,6 @@ jobs:
       - name: Change to AWS Cloud Directory
         run: |
           cd clouds/aws
-          ls
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
@@ -40,7 +39,8 @@ jobs:
       - name: Terraform Init
         run: |
           cd clouds/aws
-          terraform init -force-copy -input=false -backend-config bucket=pos-fiap-schepis
+          terraform init -backend-config="bucket=pos-fiap-schepis" -backend-config="key=terraform.tfstate" -backend-config="region=us-east-1"
+
 
       - name: Terraform Plan
         run: |
