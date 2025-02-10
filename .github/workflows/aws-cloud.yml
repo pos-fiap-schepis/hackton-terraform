@@ -1,7 +1,7 @@
 name: Terraform AWS Deployment
 
 on:
-  pull_request:
+  push:
     branches:
       - main
   workflow_dispatch:
@@ -36,15 +36,14 @@ jobs:
         uses: hashicorp/setup-terraform@v2
         with:
           terraform_version: 1.9.6
-      
+
       - name: Terraform Init
         run: |
           cd clouds/aws
-          terraform init
+          terraform init -force-copy -input=false -backend-config bucket=pos-fiap-schepis
 
       - name: Terraform Plan
-        run:
-          |
+        run: |
           cd clouds/aws
           terraform plan -var="aws_access_key=${{ secrets.AWS_ACCESS_KEY_ID }}" -var="aws_secret_key=${{ secrets.AWS_SECRET_ACCESS_KEY }}" -out=plan.tfplan
 
