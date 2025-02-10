@@ -14,6 +14,7 @@
 * bucket name ([4cfbed3](https://github.com/pos-fiap-schepis/hackton-terraform/commit/4cfbed366829a1a21d43275a5a26481f9df039a7))
 * change workflow to push state in bucket s3 ([6357d5f](https://github.com/pos-fiap-schepis/hackton-terraform/commit/6357d5fb396a22931e9b193cbd7d1a1913a8c074))
 * create bucket s3 to state of terraform ([15980b1](https://github.com/pos-fiap-schepis/hackton-terraform/commit/15980b178b3abd9a11e829ce268bd4bd4e53f87c))
+* make BUCKET_NAME dynamic with date and time ([5d8207c](https://github.com/pos-fiap-schepis/hackton-terraform/commit/5d8207cfb60766f0eb7929ae1e2368f26a6cabc0))
 * make BUCKET_NAME dynamic with date and time ([958e6a7](https://github.com/pos-fiap-schepis/hackton-terraform/commit/958e6a78b4e69777ee0fa548d23ac822ff8cf6e2))
 * path and name file ([f0be2e8](https://github.com/pos-fiap-schepis/hackton-terraform/commit/f0be2e84bb77e9c1be995cbf4946238201db8288))
 * path and name file ([da5e22f](https://github.com/pos-fiap-schepis/hackton-terraform/commit/da5e22f05c8679b18fc1276fdf5d0a310c2166ec))
