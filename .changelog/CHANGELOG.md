@@ -29,6 +29,7 @@
 * path keycloack dump [skip ci] ([4ab7b85](https://github.com/pos-fiap-schepis/hackton-terraform/commit/4ab7b85abc83bbf11585a158cecca9eecc2c475c))
 * path to aws ([35f48e8](https://github.com/pos-fiap-schepis/hackton-terraform/commit/35f48e860a40e17fc7a39ca531cbb1eaf57c2ea5))
 * rds instance attributes, see why node groups not attach ([795fec5](https://github.com/pos-fiap-schepis/hackton-terraform/commit/795fec5be8add23ba0592a54748baf1fd75ba2ea))
+* sonar rds endpoint name ([315e385](https://github.com/pos-fiap-schepis/hackton-terraform/commit/315e38581567f17b962f39e5dc239f2a9298d912))
 * terraform ([01cdf0c](https://github.com/pos-fiap-schepis/hackton-terraform/commit/01cdf0c95eb8acfbe662569216ecd0d4d5b0ceda))
 * terraform backend s3 ([bdac55c](https://github.com/pos-fiap-schepis/hackton-terraform/commit/bdac55c1798f77a201c535a39cd5b773331570f9))
 * version rds ([2ee33e0](https://github.com/pos-fiap-schepis/hackton-terraform/commit/2ee33e0ecb86ed95203706d447d25525f23526c6))
