@@ -40,14 +40,20 @@ jobs:
         run: |
             BUCKET_NAME="pos-fiap-schepis-$(date +'%Y%m%d-%H%M%S')"
             EXISTING_BUCKET=$(aws s3api list-buckets --query "Buckets[?contains(Name, 'pos-fiap-schepis')].Name" --output text)
+              
             if [[ -n "$EXISTING_BUCKET" ]]; then
-              echo "✅ S3 bucket containing 'pos-fiap-schepis' already exists: $EXISTING_BUCKET"
+              echo "✅ Found existing S3 bucket: $EXISTING_BUCKET"
+              BUCKET_NAME="$EXISTING_BUCKET"  # Set BUCKET_NAME to existing bucket
             else
+              BUCKET_NAME="pos-fiap-schepis-$(date +'%Y%m%d-%H%M%S')"  # Create unique bucket name
               echo "🚀 Creating new S3 bucket: $BUCKET_NAME..."
               aws s3api create-bucket --bucket "$BUCKET_NAME" --region us-east-1
               aws s3api put-bucket-versioning --bucket "$BUCKET_NAME" --versioning-configuration Status=Enabled
               echo "✅ S3 bucket '$BUCKET_NAME' has been created and versioning enabled."
             fi
+            
+            # Output the final bucket name
+            echo "🌍 Using S3 bucket: $BUCKET_NAME"
 
       - name: Terraform Init
         run: |
