@@ -60,5 +60,6 @@ module "rds" {
 # ECR to push docker images
 module "app_ecr" {
   source = "./modules/ecr"
+  repository_name = "pos-fiap-schepis/hackton-spring-app"
   tags   = { Environment = "app", Project = "multi-cluster" }
 }
