@@ -1,7 +1,3 @@
-terraform {
-  backend "local" {}
-}
-
 # ROLE to create resources
 data "aws_iam_role" "lab_role" {
   name = "LabRole"
