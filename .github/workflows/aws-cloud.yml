@@ -39,14 +39,19 @@ jobs:
       
       - name: Terraform Init
         run: |
-          ls
+          cd clouds/aws
           terraform init
 
       - name: Terraform Plan
-        run: terraform plan -var="aws_access_key=${{ secrets.AWS_ACCESS_KEY_ID }}" -var="aws_secret_key=${{ secrets.AWS_SECRET_ACCESS_KEY }}" -out=plan.tfplan
+        run:
+          |
+          cd clouds/aws
+          terraform plan -var="aws_access_key=${{ secrets.AWS_ACCESS_KEY_ID }}" -var="aws_secret_key=${{ secrets.AWS_SECRET_ACCESS_KEY }}" -out=plan.tfplan
 
       - name: Terraform Apply
-        run: terraform apply -auto-approve plan.tfplan
+        run: |
+          cd clouds/aws 
+          terraform apply -auto-approve plan.tfplan
 
       - name: Retrieve RDS Endpoint and Update YAML
         id: rds_endpoint
