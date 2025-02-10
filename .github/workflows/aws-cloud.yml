@@ -67,10 +67,18 @@ jobs:
           cd clouds/aws 
           terraform apply -auto-approve plan.tfplan
 
-      - name: Retrieve RDS Endpoint and Update YAML
+      - name: Prepare RDS to all databases and restore BD
         id: rds_endpoint
+        env:
+          RDS_PASSWORD: ${{ secrets.RDS_PASSWORD }}
         run: |
           RDS_ENDPOINT=$(aws rds describe-db-instances --db-instance-identifier hackaton-database --query "DBInstances[0].Endpoint.Address" --output text)
           export RDS_ENDPOINT
+      
           echo "Creating databases..."
-          PGPASSWORD=postgres psql -h $RDS_ENDPOINT -U postgres -c "CREATE DATABASE hackaton;"
+          PGPASSWORD=$RDS_PASSWORD psql -h $RDS_ENDPOINT -U postgres -c "CREATE DATABASE hackaton;"
+          PGPASSWORD=$RDS_PASSWORD psql -h $RDS_ENDPOINT -U postgres -c "CREATE DATABASE sonarqube;"
+          PGPASSWORD=$RDS_PASSWORD psql -h $RDS_ENDPOINT -U postgres -c "CREATE DATABASE keycloak;"
+      
+          echo "Restoring Keycloak database..."
+          PGPASSWORD=$RDS_PASSWORD psql -h $RDS_ENDPOINT -U postgres -d keycloak -f init-db/keycloak_dump.sql

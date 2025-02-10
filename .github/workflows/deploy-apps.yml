@@ -55,12 +55,11 @@ jobs:
         run: |
           helm repo add minio https://charts.min.io/
           helm repo update
-          helm upgrade --install minio minio/minio \
-            --namespace minio --create-namespace \
-            --set persistence.enabled=false \
-            --set accessKey=minioadmin \
-            --set secretKey=minioadmin \
-            --set service.type=LoadBalancer
+          helm install minio bitnami/minio \
+          --set persistence.enabled=false \
+          --set service.type=LoadBalancer \
+          --set auth.rootUser=minioadmin \
+          --set auth.rootPassword=minioadmin
 
       - name: Deploy RabbitMQ
         run: |
@@ -79,13 +78,16 @@ jobs:
           helm repo update
           helm upgrade --install sonarqube sonarqube/sonarqube \
             --namespace sonarqube --create-namespace \
+            --set community.enabled=true \
             --set postgresql.enabled=false \
-            --set externalDatabase.host=$RDS_ENDPOINT \
-            --set externalDatabase.user=${{ secrets.RDS_USERNAME }} \
-            --set externalDatabase.password=${{ secrets.RDS_PASSWORD }} \
-            --set externalDatabase.database=sonarqube \
-            --set externalDatabase.port=5432 \
-            --set service.type=LoadBalancer
+            --set jdbcOverwrite.enabled=true \
+            --set jdbcOverwrite.jdbcUrl="jdbc:postgresql://hackaton-database.crspw5htod2v.us-east-1.rds.amazonaws.com:5432/sonarqube" \
+            --set jdbcOverwrite.jdbcUsername=postgres \
+            --set jdbcOverwrite.jdbcPassword=postgres \
+            --set monitoringPasscode="weillergatao" \
+            --set service.type=LoadBalancer \
+            --set service.enabled=true \
+            --set service.port=9000
 
       - name: Deploy Keycloak
         run: |
@@ -103,12 +105,6 @@ jobs:
             --set externalDatabase.password=${{ secrets.RDS_PASSWORD }} \
             --set externalDatabase.database=keycloak \
             --set externalDatabase.port=5432 \
-            --set service.type=LoadBalancer
-
-      - name: Deploy Spring Cloud Config Server
-        run: |
-          helm upgrade --install spring-config ./helm-charts/spring-config \
-            --namespace spring-config --create-namespace \
             --set service.type=LoadBalancer
 
       - name: Verify Deployments
