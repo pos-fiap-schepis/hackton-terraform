@@ -43,7 +43,7 @@ jobs:
             echo "✅ S3 bucket '$BUCKET_NAME' already exists."
           else
             echo "🚀 Creating S3 bucket '$BUCKET_NAME'..."
-            aws s3api create-bucket --bucket "$BUCKET_NAME" --region us-east-1 --create-bucket-configuration LocationConstraint=us-east-1
+            aws s3api create-bucket --bucket "$BUCKET_NAME" --region us-east-1
             aws s3api put-bucket-versioning --bucket "$BUCKET_NAME" --versioning-configuration Status=Enabled
             echo "✅ S3 bucket '$BUCKET_NAME' has been created and versioning enabled."
           fi
