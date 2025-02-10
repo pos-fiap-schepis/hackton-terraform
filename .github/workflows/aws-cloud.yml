@@ -41,7 +41,6 @@ jobs:
           cd clouds/aws
           terraform init -backend-config="bucket=pos-fiap-schepis" -backend-config="key=terraform.tfstate" -backend-config="region=us-east-1"
 
-
       - name: Terraform Plan
         run: |
           cd clouds/aws
