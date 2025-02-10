@@ -12,15 +12,6 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Wait for Terraform Workflow Completion
-        uses: fountainhead/action-wait-for-check@v1.0.0
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          checkName: "Terraform AWS Deployment"
-          repo: ${{ github.repository }}
-          ref: main
-          waitIntervalSeconds: 60
-
   deploy:
     name: Deploy Helm Applications
     runs-on: ubuntu-latest
