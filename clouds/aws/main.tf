@@ -62,3 +62,8 @@ module "app_ecr" {
   source = "./modules/ecr"
   tags   = { Environment = "app", Project = "multi-cluster" }
 }
+
+module "s3_backend" {
+  source              = "./modules/s3"
+  bucket_name         = "pos-fiap-schepis"
+}
