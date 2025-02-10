@@ -20,6 +20,7 @@
 * path and name file ([da5e22f](https://github.com/pos-fiap-schepis/hackton-terraform/commit/da5e22f05c8679b18fc1276fdf5d0a310c2166ec))
 * path and name file ([fba98f2](https://github.com/pos-fiap-schepis/hackton-terraform/commit/fba98f233f8e931de686430e41ba4481212f762b))
 * path and name file ([0f0161f](https://github.com/pos-fiap-schepis/hackton-terraform/commit/0f0161f22f465aaad536b069ff2d01c067cf6be8))
+* path keycloack dump ([e67a79f](https://github.com/pos-fiap-schepis/hackton-terraform/commit/e67a79f8bed87d149bab38fea201e90ff97ceb68))
 * path keycloack dump ([9fbbbd3](https://github.com/pos-fiap-schepis/hackton-terraform/commit/9fbbbd330a017f7cbb14a73d54e33561de5a1c49))
 * path to aws ([35f48e8](https://github.com/pos-fiap-schepis/hackton-terraform/commit/35f48e860a40e17fc7a39ca531cbb1eaf57c2ea5))
 * rds instance attributes, see why node groups not attach ([795fec5](https://github.com/pos-fiap-schepis/hackton-terraform/commit/795fec5be8add23ba0592a54748baf1fd75ba2ea))
