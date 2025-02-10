@@ -57,8 +57,9 @@ jobs:
           helm repo update
           helm upgrade --install minio minio/minio \
             --namespace minio --create-namespace \
-            --set accessKey=myaccesskey \
-            --set secretKey=mysecretkey \
+            --set persistence.enabled=false \
+            --set accessKey=minioadmin \
+            --set secretKey=minioadmin \
             --set service.type=LoadBalancer
 
       - name: Deploy RabbitMQ
