@@ -42,13 +42,12 @@ module "infra_cluster" {
 # RDS to application and keycloack
 module "rds" {
   source                = "./modules/rds"
-  name                  = "app-database"
-  db_name               = "appdb"
+  name                  = "hackaton-database"
+  db_name               = "hackaton"
   username              = "postgres"
   password              = "postgres"
   immediately           = true
-  subnet_ids            = module.vpc.private_subnets
-  security_group_ids    = []
+  subnet_ids            = module.vpc.public_subnets
   create_security_group = true
   vpc_id                = module.vpc.vpc_id
   allocated_storage     = 20

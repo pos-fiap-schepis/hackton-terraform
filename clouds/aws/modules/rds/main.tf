@@ -9,33 +9,32 @@ resource "aws_db_subnet_group" "this" {
 }
 
 # RDS Security Group (if not passed from the parent)
-resource "aws_security_group" "this" {
-  count  = var.create_security_group ? 1 : 0
-  name   = "${var.name}-sg"
+resource "aws_security_group" "rds_sg" {
+  name   = "rds-security-group"
   vpc_id = var.vpc_id
 
   ingress {
-    from_port   = 5432
-    to_port     = 5432
-    protocol    = "tcp"
-    cidr_blocks = var.allow_cidr_blocks
-  }
-
-  egress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
+    from_port = 5432
+    to_port   = 5432
+    protocol  = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
 
-  tags = merge(
-    var.tags,
-    { Name = "${var.name}-sg" }
-  )
+  egress {
+    from_port = 0
+    to_port   = 0
+    protocol  = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  tags = {
+    Name = "rds-security-group"
+  }
 }
 
 # RDS Instance
 resource "aws_db_instance" "this" {
+  identifier             = var.name
   allocated_storage      = var.allocated_storage
   engine                 = "postgres"
   engine_version         = var.engine_version
@@ -46,7 +45,9 @@ resource "aws_db_instance" "this" {
   parameter_group_name   = "default.postgres16"
   skip_final_snapshot    = true
   publicly_accessible    = true
-  vpc_security_group_ids = var.create_security_group ? [aws_security_group.this[0].id] : var.security_group_ids
+  vpc_security_group_ids = [
+    aws_security_group.rds_sg.id
+  ]
 
   tags = var.tags
 }

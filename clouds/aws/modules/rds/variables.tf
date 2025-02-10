@@ -41,12 +41,6 @@ variable "subnet_ids" {
   type        = list(string)
 }
 
-variable "security_group_ids" {
-  description = "List of security group IDs for the RDS instance"
-  type        = list(string)
-  default     = []
-}
-
 variable "create_security_group" {
   description = "Whether to create a security group for RDS"
   type        = bool
